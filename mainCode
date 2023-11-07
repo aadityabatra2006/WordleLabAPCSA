@@ -1,13 +1,16 @@
-// Step 1 
+<!-- Step 1: WordleOfTheDay Class -->
+// Step 1: Define the WordleOfTheDay class, which displays the word of the day.
 public class WordleOfTheDay {
     public static final String WORDLE_OF_THE_DAY = "Java"; // Replace "Java" with the actual word of the day
 
+    // Step 1: Main method to display the word of the day.
     public static void main(String[] args) {
         System.out.println("Today's Wordle of the Day is: " + WORDLE_OF_THE_DAY);
     }
 }
 
-// Steps 2 - 8 
+// Steps 2 - 8: WordleGame Class
+// Steps 2 - 8: Define the WordleGame class, which is a text-based Wordle game.
 import java.util.Scanner;
 
 public class WordleGame {
@@ -15,18 +18,21 @@ public class WordleGame {
     public static final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
     public static char[] solution = new char[WORDLE_OF_THE_DAY.length()]; // Initialize the solution array
 
+    // Step 2: Main method to play the Wordle game.
     public static void main(String[] args) {
         System.out.println("Today's Wordle of the Day is: " + WORDLE_OF_THE_DAY);
 
         int guessNumber = 1;
         boolean foundSolution = false;
 
+        // Step 3: Loop to allow up to 6 guesses.
         do {
             String userGuess = getUserGuess(guessNumber);
             char[] guessArray = convertToCharArray(userGuess);
             processGuess(guessArray);
             displayGameStatus(guessNumber, solution, alphabet);
 
+            // Step 4: Check if the solution is complete.
             if (isSolutionComplete(solution)) {
                 foundSolution = true;
                 break;
@@ -35,6 +41,7 @@ public class WordleGame {
             guessNumber++;
         } while (guessNumber <= 6);
 
+        // Step 5: Display game result.
         if (foundSolution) {
             System.out.println("Congratulations! You've guessed the Wordle correctly: " + WORDLE_OF_THE_DAY);
         } else {
@@ -42,16 +49,19 @@ public class WordleGame {
         }
     }
 
+    // Step 6: Get user's guess for a specific round.
     public static String getUserGuess(int guessNumber) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your guess for guess #" + guessNumber + ": ");
         return scanner.nextLine().toUpperCase(); // Convert the input to uppercase for consistency
     }
 
+    // Step 7: Convert a string to a character array.
     public static char[] convertToCharArray(String input) {
         return input.toCharArray();
     }
 
+    // Step 8: Process the user's guess and update game state.
     public static void processGuess(char[] guessArray) {
         for (int i = 0; i < guessArray.length; i++) {
             char guessChar = guessArray[i];
@@ -67,6 +77,7 @@ public class WordleGame {
         }
     }
 
+    // Step 8: Display the current game status, including guessed letters and available letters.
     public static void displayGameStatus(int guessNumber, char[] solution, char[] alphabet) {
         System.out.println("Guess #" + guessNumber + ": " + new String(solution));
 
@@ -78,6 +89,7 @@ public class WordleGame {
         System.out.println();
     }
 
+    // Step 4: Check if the solution is complete (all letters guessed correctly).
     public static boolean isSolutionComplete(char[] solution) {
         for (char letter : solution) {
             if (letter == 0) {
