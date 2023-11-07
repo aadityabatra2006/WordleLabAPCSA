@@ -269,3 +269,12 @@ public class WordleGame {
         return true; // The solution is complete
     }
 }
+
+WordleOfTheDay: This class simply displays the "Wordle of the Day." It's fine for displaying the word of the day.
+
+WordleGame: You have several versions of this class, and it appears that they represent different steps in your Wordle game implementation.
+    The first version of WordleGame displays the "Wordle of the Day" and the initial alphabet. It's fine for this purpose.
+    The second version of WordleGame prompts the user for guesses and displays them. However, it doesn't implement the full game logic and doesn't track the solution or the remaining alphabet.
+    The third version of WordleGame continues the user guessing process but still lacks full game logic and tracking of the solution.
+    The fourth version of WordleGame adds more game logic, including checking if a character is in the solution or updating the alphabet. However, it doesn't include logic for checking if the solution is complete or ending the game.
+    The fifth version of WordleGame adds a do-while loop to continue the game until a solution is found or the user runs out of tries. It also displays a congratulatory message or a message indicating that the user is out of tries.
