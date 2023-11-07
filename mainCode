@@ -1,8 +1,271 @@
 public class WordleOfTheDay {
-    public static final String WORDLE_OF_THE_DAY = "Java"; 
-// Replace "Java" with the actual word of the day
+    public static final String WORDLE_OF_THE_DAY = "Java"; // Replace "Java" with the actual word of the day
 
     public static void main(String[] args) {
         System.out.println("Today's Wordle of the Day is: " + WORDLE_OF_THE_DAY);
+    }
+}
+
+public class WordleGame {
+    public static final String WORDLE_OF_THE_DAY = "JAVA"; // Replace "JAVA" with the actual word of the day
+    public static final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+
+    public static void main(String[] args) {
+        System.out.println("Today's Wordle of the Day is: " + WORDLE_OF_THE_DAY);
+
+        System.out.print("Alphabet available for the game: ");
+        for (char letter : alphabet) {
+            System.out.print(letter + " ");
+        }
+    }
+}
+
+import java.util.Scanner;
+
+public class WordleGame {
+    public static final String WORDLE_OF_THE_DAY = "JAVA"; // Replace "JAVA" with the actual word of the day
+    public static final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+    
+    public static void main(String[] args) {
+        System.out.println("Today's Wordle of the Day is: " + WORDLE_OF_THE_DAY);
+        
+        int guessNumber = 1;
+        
+        while (guessNumber <= 6) {
+            String userGuess = getUserGuess(guessNumber);
+            System.out.println("Guess #" + guessNumber + ": " + userGuess);
+            guessNumber++;
+        }
+    }
+    
+    public static String getUserGuess(int guessNumber) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your guess for guess #" + guessNumber + ": ");
+        return scanner.nextLine().toUpperCase(); // Convert the input to uppercase for consistency
+    }
+}
+
+public class WordleGame {
+    public static final String WORDLE_OF_THE_DAY = "JAVA"; // Replace "JAVA" with the actual word of the day
+    public static final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+    
+    public static void main(String[] args) {
+        System.out.println("Today's Wordle of the Day is: " + WORDLE_OF_THE_DAY);
+        
+        int guessNumber = 1;
+        
+        while (guessNumber <= 6) {
+            String userGuess = getUserGuess(guessNumber);
+            char[] guessArray = convertToCharArray(userGuess);
+            System.out.println("Guess #" + guessNumber + ": " + userGuess);
+            System.out.println("Guess as character array: " + new String(guessArray));
+            guessNumber++;
+        }
+    }
+    
+    public static String getUserGuess(int guessNumber) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your guess for guess #" + guessNumber + ": ");
+        return scanner.nextLine().toUpperCase(); // Convert the input to uppercase for consistency
+    }
+    
+    public static char[] convertToCharArray(String input) {
+        return input.toCharArray();
+    }
+}
+
+import java.util.Scanner;
+
+public class WordleGame {
+    public static final String WORDLE_OF_THE_DAY = "JAVA"; // Replace "JAVA" with the actual word of the day
+    public static final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+    public static char[] solution = new char[WORDLE_OF_THE_DAY.length()]; // Initialize the solution array
+
+    public static void main(String[] args) {
+        System.out.println("Today's Wordle of the Day is: " + WORDLE_OF_THE_DAY);
+        
+        int guessNumber = 1;
+        
+        while (guessNumber <= 6) {
+            String userGuess = getUserGuess(guessNumber);
+            char[] guessArray = convertToCharArray(userGuess);
+            processGuess(guessArray);
+            displayGameStatus(guessNumber);
+            guessNumber++;
+        }
+    }
+    
+    public static String getUserGuess(int guessNumber) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your guess for guess #" + guessNumber + ": ");
+        return scanner.nextLine().toUpperCase(); // Convert the input to uppercase for consistency
+    }
+    
+    public static char[] convertToCharArray(String input) {
+        return input.toCharArray();
+    }
+
+    public static void processGuess(char[] guessArray) {
+        for (int i = 0; i < guessArray.length; i++) {
+            char guessChar = guessArray[i];
+            char solutionChar = WORDLE_OF_THE_DAY.charAt(i);
+            
+            if (guessChar == solutionChar) {
+                solution[i] = guessChar;
+            } else if (WORDLE_OF_THE_DAY.contains(String.valueOf(guessChar))) {
+                alphabet[guessChar - 'A'] = Character.toLowerCase(guessChar);
+            } else {
+                alphabet[guessChar - 'A'] = ' ';
+            }
+        }
+    }
+
+    public static void displayGameStatus(int guessNumber) {
+        System.out.println("Guess #" + guessNumber + ": " + new String(solution));
+        
+        System.out.print("Alphabet available for the game: ");
+        for (char letter : alphabet) {
+            System.out.print((letter == ' ') ? '_' : letter);
+            System.out.print(" ");
+        }
+        System.out.println();
+    }
+}
+
+import java.util.Scanner;
+
+public class WordleGame {
+    public static final String WORDLE_OF_THE_DAY = "JAVA"; // Replace "JAVA" with the actual word of the day
+    public static final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+    public static char[] solution = new char[WORDLE_OF_THE_DAY.length()]; // Initialize the solution array
+
+    public static void main(String[] args) {
+        System.out.println("Today's Wordle of the Day is: " + WORDLE_OF_THE_DAY);
+
+        int guessNumber = 1;
+
+        while (guessNumber <= 6) {
+            String userGuess = getUserGuess(guessNumber);
+            char[] guessArray = convertToCharArray(userGuess);
+            processGuess(guessArray);
+            displayGameStatus(guessNumber, solution, alphabet);
+            guessNumber++;
+        }
+    }
+
+    public static String getUserGuess(int guessNumber) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your guess for guess #" + guessNumber + ": ");
+        return scanner.nextLine().toUpperCase(); // Convert the input to uppercase for consistency
+    }
+
+    public static char[] convertToCharArray(String input) {
+        return input.toCharArray();
+    }
+
+    public static void processGuess(char[] guessArray) {
+        for (int i = 0; i < guessArray.length; i++) {
+            char guessChar = guessArray[i];
+            char solutionChar = WORDLE_OF_THE_DAY.charAt(i);
+
+            if (guessChar == solutionChar) {
+                solution[i] = guessChar;
+            } else if (WORDLE_OF_THE_DAY.contains(String.valueOf(guessChar))) {
+                alphabet[guessChar - 'A'] = Character.toLowerCase(guessChar);
+            } else {
+                alphabet[guessChar - 'A'] = ' ';
+            }
+        }
+    }
+
+    public static void displayGameStatus(int guessNumber, char[] solution, char[] alphabet) {
+        System.out.println("Guess #" + guessNumber + ": " + new String(solution));
+
+        System.out.print("Alphabet available for the game: ");
+        for (char letter : alphabet) {
+            System.out.print((letter == ' ') ? '_' : letter);
+            System.out.print(" ");
+        }
+        System.out.println();
+    }
+}
+
+import java.util.Scanner;
+
+public class WordleGame {
+    public static final String WORDLE_OF_THE_DAY = "JAVA"; // Replace "JAVA" with the actual word of the day
+    public static final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+    public static char[] solution = new char[WORDLE_OF_THE_DAY.length()]; // Initialize the solution array
+
+    public static void main(String[] args) {
+        System.out.println("Today's Wordle of the Day is: " + WORDLE_OF_THE_DAY);
+
+        int guessNumber = 1;
+        boolean foundSolution = false;
+
+        do {
+            String userGuess = getUserGuess(guessNumber);
+            char[] guessArray = convertToCharArray(userGuess);
+            processGuess(guessArray);
+            displayGameStatus(guessNumber, solution, alphabet);
+
+            if (isSolutionComplete(solution)) {
+                foundSolution = true;
+                break;
+            }
+
+            guessNumber++;
+        } while (guessNumber <= 6);
+
+        if (foundSolution) {
+            System.out.println("Congratulations! You've guessed the Wordle correctly: " + WORDLE_OF_THE_DAY);
+        } else {
+            System.out.println("Sorry, you've used all 6 tries. The Wordle of the Day was: " + WORDLE_OF_THE_DAY);
+        }
+    }
+
+    public static String getUserGuess(int guessNumber) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your guess for guess #" + guessNumber + ": ");
+        return scanner.nextLine().toUpperCase(); // Convert the input to uppercase for consistency
+    }
+
+    public static char[] convertToCharArray(String input) {
+        return input.toCharArray();
+    }
+
+    public static void processGuess(char[] guessArray) {
+        for (int i = 0; i < guessArray.length; i++) {
+            char guessChar = guessArray[i];
+            char solutionChar = WORDLE_OF_THE_DAY.charAt(i);
+
+            if (guessChar == solutionChar) {
+                solution[i] = guessChar;
+            } else if (WORDLE_OF_THE_DAY.contains(String.valueOf(guessChar))) {
+                alphabet[guessChar - 'A'] = Character.toLowerCase(guessChar);
+            } else {
+                alphabet[guessChar - 'A'] = ' ';
+            }
+        }
+    }
+
+    public static void displayGameStatus(int guessNumber, char[] solution, char[] alphabet) {
+        System.out.println("Guess #" + guessNumber + ": " + new String(solution));
+
+        System.out.print("Alphabet available for the game: ");
+        for (char letter : alphabet) {
+            System.out.print((letter == ' ') ? '_' : letter);
+            System.out.print(" ");
+        }
+        System.out.println();
+    }
+
+    public static boolean isSolutionComplete(char[] solution) {
+        for (char letter : solution) {
+            if (letter == 0) {
+                return false; // The solution is not complete
+            }
+        }
+        return true; // The solution is complete
     }
 }
