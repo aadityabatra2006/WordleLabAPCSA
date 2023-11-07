@@ -1,5 +1,5 @@
-<!-- Step 1: WordleOfTheDay Class -->
-<!-- Step 1: Define the WordleOfTheDay class, which displays the word of the day. -->
+<!--Step 1: WordleOfTheDay Class-->
+<!--Step 1: Define the WordleOfTheDay class, which displays the word of the day.-->
 public class WordleOfTheDay {
     public static final String WORDLE_OF_THE_DAY = "Java"; // Replace "Java" with the actual word of the day
 
