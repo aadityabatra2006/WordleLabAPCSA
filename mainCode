@@ -1,0 +1,8 @@
+public class WordleOfTheDay {
+    public static final String WORDLE_OF_THE_DAY = "Java"; 
+// Replace "Java" with the actual word of the day
+
+    public static void main(String[] args) {
+        System.out.println("Today's Wordle of the Day is: " + WORDLE_OF_THE_DAY);
+    }
+}
